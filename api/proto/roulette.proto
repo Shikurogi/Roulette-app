@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "pkg/api";
+
+service Roulette{
+  rpc Spin(NewBet) returns (BetResult) {}
+}
+
+message NewBet{
+  string bet = 1;
+}
+
+message BetResult{
+  string result = 1;
+}
