@@ -1,11 +1,12 @@
 package main
 
 import (
-	"awesomeProject1/pkg/api"
+	"awesomeProject1/api/proto"
 	"context"
 	"flag"
 	"google.golang.org/grpc"
 	"log"
+	"strconv"
 )
 
 func main() {
@@ -19,8 +20,14 @@ func main() {
 		log.Fatal(err)
 	}
 
-	c := api.NewRouletteClient(conn)
-	res, err := c.Spin(context.Background(), &api.NewBet{Bet: flag.Arg(0)})
+	x, err := strconv.Atoi(flag.Arg(0))
+	if err != nil {
+		log.Fatal(err)
+	}
+	resX := int32(x)
+
+	c := proto.NewRouletteClient(conn)
+	res, err := c.Spin(context.Background(), &proto.NewBet{Bet: resX})
 	if err != nil {
 		log.Fatal(err)
 	}

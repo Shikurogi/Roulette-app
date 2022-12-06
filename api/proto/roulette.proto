@@ -9,7 +9,7 @@ service Roulette{
 }
 
 message NewBet{
-  string bet = 1;
+  int32 bet = 1;
 }
 
 message BetResult{
